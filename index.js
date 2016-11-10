@@ -1,21 +1,11 @@
-var Built = require('built-extension-sdk')
+var express = require('express')
+var app     = express()
 
-// Initiate application
-var app = Built.App('blt1273bdbe69c0d332')
-.setHost('localhost')
-.setProtocol('http')
-.setPort(8000)
-.setMasterKey('blta59b96c704a15b55')
-
-var extensionSDK = app.Extension({
-	extension_key	 : 'blt_ext_default',
-	static         : __dirname + '/client',
-	routes         : require('./server/routes')
+// respond with "hello world" when a GET request is made to the homepage
+app.get('/', function (req, res) {
+  res.send('hello world')
 })
 
-return extensionSDK.start()
-.then(function (){
-	console.log("Server deployed")
-})
+app.listen(9000)
 
-
+console.log("Server started on port", 9000)
